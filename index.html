@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>OpenAmericas — Mapa de Prospectos Artesanales</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:#0d1b2a;color:#fff;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+header{padding:10px 20px;background:linear-gradient(135deg,#1a3a5c,#2e75b6);display:flex;justify-content:space-between;align-items:center;flex-shrink:0;z-index:10}
+header h1{font-size:1.2rem;font-weight:700}
+header .sub{font-size:.75rem;color:#adc8e8;margin-top:2px}
+.stats{display:flex;gap:10px}
+.stat{text-align:center;background:rgba(255,255,255,.12);padding:4px 14px;border-radius:20px}
+.stat .n{font-size:1.2rem;font-weight:700;color:#4fc3f7}
+.stat .l{font-size:.63rem;color:#adc8e8}
+.body{display:flex;flex:1;overflow:hidden}
+#mc{flex:1;position:relative;background:#061420}
+#mc svg{width:100%;height:100%}
+.state-path{fill:#1e6640;stroke:#2a8a56;stroke-width:.8;cursor:pointer;transition:fill .18s}
+.state-path:hover{fill:#28895a}
+.state-active{fill:#0e4a2d!important}
+.bubble{cursor:pointer}
+.bubble .ring{pointer-events:none}
+.bubble .main{transition:r .15s}
+.bubble:hover .main{stroke-width:3}
+#panel{width:320px;background:linear-gradient(180deg,#0c2640,#091825);border-left:1px solid #1d4a6e;display:flex;flex-direction:column;overflow:hidden}
+#ph{padding:12px 14px;background:rgba(0,0,0,.3);border-bottom:1px solid #1d4a6e;font-size:.95rem;color:#4fc3f7;flex-shrink:0}
+#pb{padding:10px 12px;overflow-y:auto;flex:1}
+.card{background:rgba(255,255,255,.05);border-radius:6px;padding:8px 10px;margin-bottom:7px;border-left:3px solid #2e75b6}
+.card .cn{font-weight:600;font-size:.83rem;color:#fff;margin-bottom:2px}
+.card .cp{font-size:.73rem;color:#7fb3d3;margin-bottom:3px}
+.card .cc{font-size:.7rem;color:#4fc3f7;margin-top:3px;margin-bottom:2px;font-weight:500}
+.tag{display:inline-block;font-size:.6rem;padding:1px 6px;border-radius:8px;margin-top:2px}
+.ta{background:#1a5c2a;color:#5dbb6d}
+.tm{background:#5c4a1a;color:#d4a82a}
+.lgd{padding:10px 14px;background:rgba(0,0,0,.25);border-top:1px solid #1d4a6e;flex-shrink:0}
+.lgd-t{font-size:.7rem;color:#7fb3d3;margin-bottom:6px;font-weight:600}
+.lgd-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:.7rem;color:#adc8e8}
+.lgd-c{border-radius:50%;flex-shrink:0}
+#tt{position:absolute;pointer-events:none;background:rgba(8,20,32,.95);border:1px solid #2e75b6;border-radius:6px;padding:6px 10px;font-size:.75rem;display:none;z-index:99}
+#tt .ts{font-weight:700;color:#4fc3f7;font-size:.85rem}
+#tt .tc{color:#adc8e8}
+.ov-row{display:flex;justify-content:space-between;align-items:center;padding:5px 2px;border-bottom:1px solid #162a3d;font-size:.78rem;cursor:pointer;border-radius:3px;padding:5px 5px}
+.ov-row:hover{background:rgba(255,255,255,.06)}
+.ov-s{color:#c0d8f0}
+.ov-n{color:#4fc3f7;font-weight:700}
+#loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#4fc3f7;font-size:1rem;gap:10px}
+.spinner{width:40px;height:40px;border:3px solid #1d4a6e;border-top-color:#4fc3f7;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>🇲🇽 OpenAmericas — Empresas Mexicanas sin Exportación a EE.UU.</h1>
+    <div class="sub">Prospectos verificados con contacto directo · Junio 2026 · Haz clic en un estado para ver sus empresas</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="n">99</div><div class="l">Empresas</div></div>
+    <div class="stat"><div class="n">22</div><div class="l">Estados</div></div>
+    <div class="stat"><div class="n">35</div><div class="l">Categorías</div></div>
+  </div>
+</header>
+<div class="body">
+  <div id="mc">
+    <div id="tt"><div class="ts" id="tt-s"></div><div class="tc" id="tt-c"></div></div>
+    <div id="loading"><div class="spinner"></div><span>Cargando mapa de México...</span></div>
+    <svg id="map"></svg>
+  </div>
+  <div id="panel">
+    <div id="ph">↖ Haz clic en un estado del mapa</div>
+    <div id="pb"></div>
+    <div class="lgd">
+      <div class="lgd-t">Tamaño del círculo = número de empresas</div>
+      <div class="lgd-row"><div class="lgd-c" style="width:34px;height:34px;background:#e63946"></div>15 o más empresas</div>
+      <div class="lgd-row"><div class="lgd-c" style="width:24px;height:24px;background:#f4a261"></div>5 – 14 empresas</div>
+      <div class="lgd-row"><div class="lgd-c" style="width:16px;height:16px;background:#457b9d"></div>2 – 4 empresas</div>
+      <div class="lgd-row"><div class="lgd-c" style="width:10px;height:10px;background:#6c757d"></div>1 empresa</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const COMPANIES = {
+  "Oaxaca":{lat:17.07,lon:-96.72,count:19,color:"#e63946",companies:[
+    {n:"Lula Naya Ni",p:"Barro negro artesanal oaxaqueño, piezas únicas sin quema industrial",t:"Alta",c:"Tel: +52 1 951 567-9454"},
+    {n:"Flor de Piña Artesanías",p:"Cerámica oaxaqueña decorativa y utilitaria, barro negro",t:"Alta",c:"Tel: +52 33 1964-5498"},
+    {n:"Oaxacanita Chocolate",p:"Chocolate artesanal de cacao mixteco, tablillas y bebidas",t:"Alta",c:"Tel: +52 951 417-1778"},
+    {n:"Chocolatl Oaxaca",p:"Chocolate de piedra artesanal y mole oaxaqueño",t:"Alta",c:"FB/IG: @chocolatl_oaxaca"},
+    {n:"Chocolate La Soledad",p:"Chocolate molido en piedra, receta generacional desde 1930",t:"Alta",c:"Tel: (951) 516-3807"},
+    {n:"Moles Guelaguetza",p:"Mole negro, rojo, coloradito y amarillo artesanal",t:"Alta",c:"Tel: (951) 516-3513"},
+    {n:"Moles y Chocolates Juquilita",p:"Mole artesanal y chocolate de metate, producción familiar",t:"Alta",c:"Tel: (951) 514-9921"},
+    {n:"Selvática Jabones Artesanales",p:"Jabones con ingredientes naturales de Oaxaca",t:"Alta",c:"Tel: +52 951 349-0881"},
+    {n:"Tiyoo",p:"Canastas tejidas con planta cucharilla, Mixteca oaxaqueña",t:"Alta",c:"IG: @tiyoooaxaca"},
+    {n:"Artesanía de Oaxaca (Ikay)",p:"Cestos y canastas de alambre reciclado y fibras naturales",t:"Alta",c:"artesaniadeoaxaca.com"},
+    {n:"Oaxacan Artesanías",p:"Alebrijes tallados y pintados a mano, figuras de copal",t:"Alta",c:"oaxacan.com.mx"},
+    {n:"Taller Jacobo y María Ángeles",p:"Alebrijes únicos pintados a mano, San Martín Tilcajete",t:"Alta",c:"Tel: (951) 365-4462"},
+    {n:"Casa del Copal Oaxaca",p:"Figuras talladas en madera de copal pintadas a mano",t:"Alta",c:"FB: Casa del Copal Arrazola"},
+    {n:"Artesanos del Copal y Sahumadores",p:"Copal puro oaxaqueño, sahumadores y resinas aromáticas",t:"Alta",c:"Tel: +52 1 951 240-6945"},
+    {n:"Ruiz Bazán Tapetes Artesanales",p:"Tapetes de lana con tintes 100% naturales (cochinilla, índigo, corteza), diseños zapotecas ancestrales",t:"Alta",c:"Tel: 951 341 0450"},
+    {n:"El Tono de la Cochinilla",p:"Tapetes y textiles teñidos con grana cochinilla, técnica prehispánica de teñido natural",t:"Alta",c:"Tel: 951 260 0529"},
+    {n:"GUIBA' Joyería Filigrana",p:"Filigrana oaxaqueña en plata, joyería artesanal con diseños zapotecas de Juchitán, piezas únicas",t:"Alta",c:"Tel: 971 157 7049"},
+    {n:"Corazón de Parota",p:"Muebles artesanales de madera de parota tallados a mano — mesas, comedores, camas y salas, diseño oaxaqueño único",t:"Alta",c:"Tel: (951) 147 61 40"},
+    {n:"Estudio Madera Oaxaca",p:"Taller de muebles finos en maderas locales — diseño contemporáneo con raíces oaxaqueñas, producción directa de fábrica",t:"Alta",c:"Tel: +52 (951) 100 5776"},
+  ]},
+  "Chiapas":{lat:16.75,lon:-93.12,count:17,color:"#e63946",companies:[
+    {n:"Sna Jolobil (Cooperativa)",p:"Textiles tzotziles y tzeltales tejidos a mano, huipiles",t:"Alta",c:"Tel: (967) 678-2646"},
+    {n:"Jolom Mayaetik (Cooperativa)",p:"Bordados a mano por mujeres indígenas de los Altos",t:"Alta",c:"Tel: (967) 112-5071"},
+    {n:"Nich Chiapas (Cooperativa Tzotzil)",p:"Textiles con flores y bordados de Zinacantán",t:"Alta",c:"IG: @nich_chiapas"},
+    {n:"PEPÉN Diseño Textil",p:"Ropa contemporánea con textiles artesanales chiapanecos",t:"Alta",c:"IG: @pepentextil"},
+    {n:"Manos Indígenas Internacional",p:"Textiles bordados a mano por comunidades indígenas",t:"Alta",c:"Tel: +52 967 231-3486"},
+    {n:"Galería Ambaria",p:"Joyería artesanal en ámbar de Chiapas, piezas exclusivas",t:"Alta",c:"Tel: 967 674-5899"},
+    {n:"Solo Ámbar",p:"Joyería exclusiva con ámbar chiapaneco desde 1999",t:"Alta",c:"Tel: +52 961 125-0723"},
+    {n:"Ek Balam Joyería Ámbar",p:"Ámbar de Chiapas tallado y diseñado a mano",t:"Alta",c:"FB: ambarchiapasekbalam"},
+    {n:"Chotacam",p:"Chocolate artesanal de cacao chiapaneco, pequeños productores",t:"Alta",c:"IG: @Chotacam"},
+    {n:"Café Concordia",p:"Café de especialidad, Reserva El Triunfo, Chiapas",t:"Alta",c:"Tel: 961 191-2332"},
+    {n:"Etnia52 Café de Altura",p:"Café de altura directo del productor, tostado artesanal",t:"Alta",c:"Tel: 55 7026-6401"},
+    {n:"Lekil-Kuxlejal S.C.",p:"Cooperativa de café orgánico, comunidades indígenas tzeltal",t:"Alta",c:"Tel: +52 1 967 151-4711"},
+    {n:"Batsil Winik",p:"Café tostado artesanal, 17 comunidades de Tenejapa",t:"Alta"},
+    {n:"CEDECOT A.C.",p:"Café orgánico de comunidades tzeltal, San Juan Cancuc",t:"Alta",c:"amecafe.org.mx"},
+    {n:"NAE Cosmética Natural",p:"Cosméticos 100% naturales elaborados en Chiapas — sueros, cremas y aceites con tepezcohuite, bakuchiol y rosa mosqueta, 98.8% ingredientes naturales",t:"Alta",c:"Tel: +52 961 659 1914"},
+    {n:"Cooperativa Jolom Mayaetik",p:"256 artesanas mayas tejedoras — huipiles, tapetes, manteles y bolsas bordados a mano en telar de cintura, diseños tzotziles ancestrales, San Cristóbal de las Casas",t:"Alta",c:"Tel: 967 112 5071"},
+    {n:"Cooperativa Jvaychil",p:"49 mujeres tsotsiles de Chenalhó — blusas, bolsas y textiles bordados a mano con figuras mayas tradicionales, comercio justo directo del taller",t:"Alta",c:"Tel: 967 109 8247"},
+  ]},
+  "Puebla":{lat:19.04,lon:-98.20,count:7,color:"#f4a261",companies:[
+    {n:"Talavera Salazar",p:"Talavera artesanal 100% tradicional, platos, jarrones, azulejos",t:"Alta",c:"Tel: +52 221 258 6934"},
+    {n:"Mayólica Santa Rosa",p:"Cerámica mayólica con diseños tradicionales poblanos",t:"Media",c:"FONART: 800 400 4000"},
+    {n:"Téllez Ónix Mármol Diseño",p:"Figuras y jarrones en ónix y mármol tallados a mano",t:"Alta",c:"Tel: +52 224 271-4199"},
+    {n:"Artesanías Mayo Ónix",p:"Artesanías en ónix: ajedrez, figuras, candeleros",t:"Alta",c:"Tel: (221) 108-6476"},
+    {n:"Mueblería Misantla",p:"Muebles artesanales de cedro y caoba a medida — comedores, recámaras y closets con acabados de lujo, más de 20 años de experiencia",t:"Alta",c:"Tel: 221 184-5926"},
+    {n:"Madecor Muebles",p:"Fábrica poblana de muebles decorativos y de uso residencial en maderas finas — diseños personalizados y venta directa de fábrica",t:"Alta",c:"Tel: (222) 285 0300"},
+    {n:"Caan Crudo Velas",p:"Velas artesanales de cera de abeja pura 100%, elaboradas sin moldes de forma tradicional en la Sierra Norte de Puebla — aroma natural de miel, sin químicos",t:"Alta",c:"caancrudo.com"},
+  ]},
+  "Guerrero":{lat:17.55,lon:-99.50,count:6,color:"#f4a261",companies:[
+    {n:"Artesanos Taxco",p:"Joyería de plata .925 hecha a mano, diseños exclusivos",t:"Alta",c:"Tel: +52 762 179-5406"},
+    {n:"Joyería Casa Roja",p:"Joyería artesanal en plata y oro desde 1985",t:"Alta",c:"Tel: +52 1 762 107-3981"},
+    {n:"Linda de Taxco",p:"Platería artesanal tradicional, mayoreo y menudeo",t:"Media",c:"Tel: 762 122-5768"},
+    {n:"Proveedor Plata Taxco",p:"Plata artesanal, piezas únicas de joyería",t:"Media",c:"Tel: 762 100-8882"},
+    {n:"Artesanos de Olinalá",p:"Cajas de laca con Denominación de Origen, tallado a mano",t:"Alta",c:"FONART: 800 400 4000"},
+    {n:"Artesanas del Papel Amate",p:"Papel amate pintado a mano, escenas naturales y culturales",t:"Alta",c:"Tel: (776) 763-4029"},
+  ]},
+  "Ciudad de México":{lat:19.43,lon:-99.13,count:7,color:"#f4a261",companies:[
+    {n:"Violeta Orgánica",p:"Jabones y cosméticos artesanales 100% naturales y orgánicos",t:"Media",c:"Tel: +52 331 237-4097"},
+    {n:"Mar Amoli Cosmética Natural",p:"Jabones artesanales mexicanos, sin crueldad animal",t:"Media",c:"Tel: +52 81 1511-7942"},
+    {n:"Yaabil Jabones Artesanales",p:"Jabones artesanales con ingredientes naturales",t:"Media",c:"WA: +52 999 453-0690"},
+    {n:"Jabones Artesanales Ordaz",p:"Jabones de aceite 100% naturales, producción familiar",t:"Alta",c:"Tel: 55 3616-9938"},
+    {n:"Sirius Coffee",p:"Café de especialidad de Chiapas, tostado artesanal, CDMX",t:"Media",c:"Tel: 55 6063-7351"},
+    {n:"Casa Ferro",p:"Fábrica de muebles de herrería y metal artístico, CDMX — mesas, sillas y piezas decorativas personalizadas de alta calidad",t:"Alta",c:"Tel: 55 5014 9925"},
+    {n:"Nopalmilta Cosmética",p:"Cosméticos naturales mexicanos con extracto de nopal, rosa mosqueta y tepezcohuite — sueros, cremas y aceites con hasta 97.7% ingredientes naturales, libres de químicos",t:"Alta",c:"WA: +52 5588 362653"},
+  ]},
+  "Veracruz":{lat:19.17,lon:-96.13,count:5,color:"#2a9d8f",companies:[
+    {n:"Rancho y Beneficio Santa Beatriz",p:"Vainilla artesanal, vainas y extracto natural, 40 años",t:"Alta",c:"Tel: 784 842-1562"},
+    {n:"Vainilla del Totonacapan",p:"Vainilla en vaina y extracto, región Totonacapan",t:"Alta",c:"Tel: (766) 845-0517"},
+    {n:"iVainilla",p:"Vainilla gourmet de Papantla, vainas y extractos naturales",t:"Alta",c:"Tel: +52 784 848-3260"},
+    {n:"Vainilla Murralh",p:"Productores de vainilla original de Papantla",t:"Alta",c:"WA: +52 229 550-0134"},
+    {n:"Santa Elena Café Artesanal",p:"Café de altura de Veracruz, 1,300 msnm en Coatepec",t:"Alta",c:"Tel: +52 228 298-5804"},
+  ]},
+  "Yucatán":{lat:20.97,lon:-89.62,count:8,color:"#f4a261",companies:[
+    {n:"Artemayab",p:"Hamacas artesanales yucatecas, gran variedad de materiales",t:"Alta",c:"Tel: (999) 497-0788"},
+    {n:"Hamacas Mayajal",p:"Mayorista de hamacas tradicionales yucatecas",t:"Alta",c:"Tel: 991 959-6741"},
+    {n:"Hamacas El Charrito",p:"Hamacas artesanales, casi 80 años de tradición familiar",t:"Alta",c:"Tel: 991 611-0115"},
+    {n:"Cielo Hamacas",p:"Hamacas de alta calidad, algodón OSO y DuraSun",t:"Alta",c:"Tel: (999) 546-9678"},
+    {n:"Cooperativas Apícolas Mayas",p:"Miel virgen de abeja melipona, 100% orgánica, única en el mundo",t:"Alta"},
+    {n:"Yucabee Miel Maya",p:"Miel de abeja melipona sustentable, cosecha directa de productores mayas — sabor único, sin procesar, certificada orgánica",t:"Alta",c:"Tel: +52 985 147 3187"},
+    {n:"Roots Garate Muebles",p:"Muebles artesanales de madera tropical (cedro, tzalam, caoba) con estilo bohemio mexicano — piezas únicas para hogar, Mérida",t:"Alta",c:"Tel: 999 556 6042"},
+    {n:"Hamacas El Charrito",p:"Fábrica familiar de hamacas artesanales en Tixkokob — más de 30 años elaborando hamacas de algodón, nylon y crochet tejidas a mano, la capital mundial de la hamaca",t:"Alta",c:"Tel: 991 611 0115"},
+  ]},
+  "Jalisco":{lat:20.68,lon:-103.35,count:3,color:"#457b9d",companies:[
+    {n:"Vidrio Artístico Imperial",p:"Vidrio soplado artesanal a mano, piezas decorativas únicas, copas, jarrones y figuras de colección",t:"Alta",c:"Tel: 331 884 3665"},
+    {n:"Azteca Rústicos",p:"Muebles rústicos artesanales de madera de parota y mezquite — comedores, camas y sillones hechos a mano, Tonalá, 20+ años",t:"Alta",c:"Tel: (33) 3683-7711"},
+    {n:"Muebles Ébano",p:"Fábrica de muebles personalizados en madera de alta calidad, Guadalajara/Tonalá — diseños desde clásico hasta minimalista, venta directa de fábrica",t:"Alta",c:"Tel: (33) 3101 4325"},
+  ]},
+  "Guanajuato":{lat:21.02,lon:-101.26,count:6,color:"#f4a261",companies:[
+    {n:"Torres Mochas Artículos en Piel",p:"Bolsas artesanales de piel hechas a mano, León",t:"Media",c:"Tel: (477) 786-6386"},
+    {n:"Piel Esmeralda",p:"Calzado y artículos de piel artesanal, orgullosamente leonés",t:"Media",c:"WA: +52 477 908-8848"},
+    {n:"Vianala Bolsas de Piel",p:"Casa marroquinera de León: bolsas y carteras artesanales de piel genuina, alta calidad y diseño 100% mexicano, venta directa de fábrica",t:"Alta",c:"Tel: (477) 713 33 05"},
+    {n:"Marquesa de Mancera",p:"Muebles y piezas hechas a mano en San Miguel de Allende — comedores, sillas y mesas de madera con acabados artesanales únicos",t:"Alta",c:"Tel: (415) 152 1047"},
+    {n:"JMB Talavera",p:"Cerámica tipo Talavera pintada a mano, libre de plomo — azulejos, lavabos y vajillas artesanales de Dolores Hidalgo",t:"Alta",c:"Tel: (418) 182 0749"},
+    {n:"Botas Doble R",p:"Botas vaqueras artesanales de piel 100% genuina — cada par hecho a mano en León, 14+ años de tradición botería",t:"Alta",c:"Tel: (477) 758-2833"},
+  ]},
+  "Campeche":{lat:19.85,lon:-90.53,count:3,color:"#457b9d",companies:[
+    {n:"Teya Artesanal",p:"Sombreros jipijapa tejidos a mano, estilo maya campechano",t:"Alta",c:"WA: +52 999 332-2098"},
+    {n:"Artesanos Lool Jipi (Bécal)",p:"Sombreros jipijapa tejidos en cuevas, tradición maya",t:"Alta",c:"Tel: (996) 431-4326"},
+    {n:"Envasadora de Miel Campeche",p:"Miel pura artesanal de abeja melífera, producción familiar sin aditivos — una de las mieles más limpias del sureste mexicano",t:"Alta",c:"Tel: (981) 817-7510"},
+  ]},
+  "Hidalgo":{lat:20.12,lon:-98.73,count:2,color:"#457b9d",companies:[
+    {n:"Bordados Artesanales Mi Tenango",p:"Bordados otomíes a mano con diseños de animales y naturaleza",t:"Alta",c:"Tel: +52 771 222-1250"},
+    {n:"Mila Textiles Bordados",p:"Ropa artesanal mexicana con bordados tenango",t:"Alta",c:"Tel: 222 895-4336"},
+  ]},
+  "Michoacán":{lat:19.70,lon:-101.19,count:5,color:"#f4a261",companies:[
+    {n:"Lacas Artesanales de Uruapan",p:"Objetos decorativos con laca tradicional purépecha pintados a mano",t:"Alta",c:"Tel: (452) 524-1392"},
+    {n:"Artesanos de Tzintzuntzan",p:"Cestería de tule y chuspata, petates y canastas michoacanas",t:"Alta",c:"Tel: (452) 524-1392"},
+    {n:"Cobre Martillado Torres",p:"Cazos, tinas, lavamanos y campanas de cobre martillado a mano, piezas únicas para hoteles y restaurantes",t:"Alta",c:"cobremartilladotorres.com"},
+    {n:"Cobre Santa Clara",p:"Tarjas, lavamanos y tinas de cobre martillado de lujo — accesorios artesanales para cocina y baño de alta gama, Santa Clara del Cobre",t:"Alta",c:"Tel: +52 434 159 0027"},
+    {n:"Muebles Artesanales de Cuanajo",p:"Muebles tallados a mano en madera de pino y aile con diseños de flores y animales — Cuanajo, cuna del mueble artesanal michoacano",t:"Alta",c:"Tel: +52 443 373 2429"},
+  ]},
+  "Estado de México":{lat:19.29,lon:-99.66,count:1,color:"#6c757d",companies:[
+    {n:"Rebozos Tenancingo",p:"Rebozos artesanales tejidos en telar de cintura, desde 1908",t:"Alta",c:"Tel: (714) 142-0246"},
+  ]},
+  "San Luis Potosí":{lat:22.16,lon:-100.98,count:1,color:"#6c757d",companies:[
+    {n:"Rebozos de Santa María del Río",p:"Rebozos de seda tejidos a mano, los más finos de México",t:"Alta",c:"Tel: +52 485 102-8733"},
+  ]},
+  "Querétaro":{lat:20.59,lon:-100.39,count:1,color:"#457b9d",companies:[
+    {n:"Nierika Arte Huichol",p:"Pinturas de estambre y figuras con chaquira hechas a mano por comunidades Wixáritari, arte sagrado único",t:"Alta",c:"Tel: 442 660-3975"},
+  ]},
+  "Nayarit":{lat:21.75,lon:-104.85,count:1,color:"#6c757d",companies:[
+    {n:"Tatehuari Arte Huichol",p:"Artículos decorativos con técnicas artesanales Wixáritari, joyería y tapices de estambre originales",t:"Alta"},
+  ]},
+  "Chihuahua":{lat:28.63,lon:-106.07,count:1,color:"#6c757d",companies:[
+    {n:"Arte en Barro (Mata Ortiz)",p:"Cerámica fina de alta colección, técnica única de Juan Mata Ortiz reconocida en galerías internacionales",t:"Alta",c:"WA: +52 636 134 3713"},
+  ]},
+  "Nuevo León":{lat:25.67,lon:-100.31,count:2,color:"#457b9d",companies:[
+    {n:"Piel Arena",p:"Bolsas artesanales de piel hechas a mano en Monterrey — diseño mexicano contemporáneo, acabados de lujo y materiales premium",t:"Alta",c:"pielarena.mx"},
+    {n:"GOT Muebles",p:"Fábrica de muebles de madera a la medida, 40+ años de experiencia — comedores, recámaras, cocinas y mobiliario para hoteles y restaurantes, Monterrey",t:"Alta",c:"Tel: +52 81 1299 0280"},
+  ]},
+  "Tabasco":{lat:17.99,lon:-92.93,count:1,color:"#6c757d",companies:[
+    {n:"CACEP Chocolates",p:"Chocolate artesanal de cacao orgánico de hacienda propia en Comalcalco, Tabasco — empresa familiar que cultiva, cosecha y produce",t:"Alta",c:"Tel: 933 124 7579"},
+  ]},
+  "Zacatecas":{lat:22.77,lon:-102.58,count:1,color:"#6c757d",companies:[
+    {n:"Toledo Plata",p:"Joyería artesanal de plata .925 diseñada y fabricada en Zacatecas, 12+ años, moda contemporánea con identidad mexicana, cada pieza hecha a mano",t:"Alta",c:"Tel: (492) 923 5265"},
+  ]},
+  "Tlaxcala":{lat:19.32,lon:-98.24,count:1,color:"#6c757d",companies:[
+    {n:"Artesanías San Martín",p:"Textiles artesanales mexicanos tejidos en telar: ponchos, gabanes y huipiles con diseños tradicionales tlaxcaltecas, venta al mayoreo",t:"Alta",c:"artesaniassanmartin.mx"},
+  ]},
+  "Quintana Roo":{lat:19.65,lon:-87.80,count:1,color:"#6c757d",companies:[
+    {n:"Melipona Maya",p:"Miel de abeja melipona (Xunan Kab) cosechada artesanalmente por apicultores mayas en Tulum — considerada el 'oro maya', sin paralelo en el mundo",t:"Alta",c:"Tel: (984) 871 2233"},
+  ]},
+};
+
+// Map between GeoJSON state names → our data keys
+const NAME_MAP = {
+  "Oaxaca":"Oaxaca","Chiapas":"Chiapas","Puebla":"Puebla","Guerrero":"Guerrero",
+  "Ciudad de México":"Ciudad de México","Veracruz":"Veracruz","Yucatán":"Yucatán",
+  "Jalisco":"Jalisco","Guanajuato":"Guanajuato","Campeche":"Campeche",
+  "Hidalgo":"Hidalgo","Michoacán":"Michoacán",
+  "México":"Estado de México","Estado de México":"Estado de México",
+  "San Luis Potosí":"San Luis Potosí","Querétaro":"Querétaro","Zacatecas":"Zacatecas",
+  // alternate spellings in GeoJSON
+  "Veracruz de Ignacio de la Llave":"Veracruz",
+  "Michoacán de Ocampo":"Michoacán",
+  "Querétaro de Arteaga":"Querétaro",
+  "Coahuila de Zaragoza":"Coahuila",
+  "Chihuahua":"Chihuahua",
+  "Nayarit":"Nayarit",
+  "Nuevo León":"Nuevo León",
+  "Tabasco":"Tabasco",
+  "Zacatecas":"Zacatecas",
+  "Tlaxcala":"Tlaxcala",
+  "Quintana Roo":"Quintana Roo",
+};
+
+function radius(n){return n>=15?26:n>=10?21:n>=5?17:n>=3?13:n>=2?10:8}
+
+const mc = document.getElementById('mc');
+const svg = d3.select('#map');
+let W, H, projection, pathGen;
+
+function setup(){
+  W = mc.clientWidth;
+  H = mc.clientHeight;
+  svg.attr('viewBox',`0 0 ${W} ${H}`);
+
+  projection = d3.geoMercator()
+    .center([-102, 23.5])
+    .scale(Math.min(W, H) * 2.2)
+    .translate([W / 2, H / 2]);
+
+  pathGen = d3.geoPath().projection(projection);
+}
+setup();
+
+const NS = 'http://www.w3.org/2000/svg';
+const tt = document.getElementById('tt');
+
+// Try loading Mexico GeoJSON from CDN
+const GEO_URL = "https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json";
+
+d3.json(GEO_URL).then(geo => {
+  document.getElementById('loading').style.display = 'none';
+
+  // Draw states
+  svg.selectAll('.state-path')
+    .data(geo.features)
+    .enter().append('path')
+    .attr('class','state-path')
+    .attr('d', pathGen)
+    .on('mouseenter', function(event, d){
+      const name = d.properties.NOMBRE || d.properties.name || d.properties.NAME_1 || '';
+      const key = NAME_MAP[name];
+      const data = key ? COMPANIES[key] : null;
+      if(data){
+        document.getElementById('tt-s').textContent = key;
+        document.getElementById('tt-c').textContent = data.count + ' empresa' + (data.count>1?'s':'');
+        tt.style.display='block';
+      }
+    })
+    .on('mousemove', function(event){
+      const r = mc.getBoundingClientRect();
+      tt.style.left=(event.clientX-r.left+14)+'px';
+      tt.style.top=(event.clientY-r.top-34)+'px';
+    })
+    .on('mouseleave', function(){
+      tt.style.display='none';
+    })
+    .on('click', function(event, d){
+      const name = d.properties.NOMBRE || d.properties.name || d.properties.NAME_1 || '';
+      const key = NAME_MAP[name];
+      if(key && COMPANIES[key]) showState(key, COMPANIES[key]);
+    });
+
+  // Draw company bubbles on top
+  Object.entries(COMPANIES).forEach(([state, d]) => {
+    const [px, py] = projection([d.lon, d.lat]);
+    const r = radius(d.count);
+    const g = document.createElementNS(NS,'g');
+    g.setAttribute('class','bubble');
+    g.style.pointerEvents='none'; // clicks handled by state paths
+
+    const ring = document.createElementNS(NS,'circle');
+    ring.setAttribute('class','ring');
+    ring.setAttribute('cx',px);ring.setAttribute('cy',py);
+    ring.setAttribute('r',r+7);ring.setAttribute('fill',d.color);ring.setAttribute('opacity','0.25');
+    g.appendChild(ring);
+
+    const c = document.createElementNS(NS,'circle');
+    c.setAttribute('class','main');
+    c.setAttribute('cx',px);c.setAttribute('cy',py);
+    c.setAttribute('r',r);c.setAttribute('fill',d.color);
+    c.setAttribute('stroke','rgba(255,255,255,0.85)');c.setAttribute('stroke-width','1.5');
+    g.appendChild(c);
+
+    const t = document.createElementNS(NS,'text');
+    t.setAttribute('x',px);t.setAttribute('y',py+1);
+    t.setAttribute('text-anchor','middle');t.setAttribute('dominant-baseline','middle');
+    t.setAttribute('fill','#fff');t.setAttribute('font-size',r>=16?'11':'8');
+    t.setAttribute('font-weight','bold');t.setAttribute('pointer-events','none');
+    t.textContent=d.count;
+    g.appendChild(t);
+
+    // Label under bubble
+    const lbl = document.createElementNS(NS,'text');
+    const short = state==='Estado de México'?'Edo.Méx':state==='San Luis Potosí'?'SLP':
+                  state==='Ciudad de México'?'CDMX':state;
+    lbl.setAttribute('x',px);lbl.setAttribute('y',py+r+11);
+    lbl.setAttribute('text-anchor','middle');lbl.setAttribute('fill','#cde');
+    lbl.setAttribute('font-size','7.5');lbl.setAttribute('pointer-events','none');
+    lbl.textContent=short;
+    g.appendChild(lbl);
+
+    document.getElementById('map').appendChild(g);
+  });
+
+  showOverview();
+
+}).catch(err => {
+  document.getElementById('loading').innerHTML =
+    '<div style="color:#e63946;font-size:.9rem;text-align:center;padding:20px">'+
+    '⚠️ No se pudo cargar el mapa.<br><br>'+
+    '<span style="color:#adc8e8;font-size:.8rem">Este archivo necesita conexión a internet para mostrar el mapa.<br>'+
+    'Verifica tu conexión y recarga la página.</span></div>';
+});
+
+function showState(state, d){
+  document.getElementById('ph').textContent = '📍 ' + state + ' — ' + d.count + ' empresa' + (d.count>1?'s':'');
+  document.getElementById('pb').innerHTML = d.companies.map(co => `
+    <div class="card">
+      <div class="cn">${co.n}</div>
+      <div class="cp">${co.p}</div>
+      ${co.c ? `<div class="cc">📞 ${co.c}</div>` : ''}
+      <span class="tag t${co.t==='Alta'?'a':'m'}">${co.t} Prioridad</span>
+    </div>`).join('');
+}
+
+function showOverview(){
+  document.getElementById('ph').textContent = 'Resumen por Estado (clic para ver empresas)';
+  const sorted = Object.entries(COMPANIES).sort((a,b)=>b[1].count-a[1].count);
+  document.getElementById('pb').innerHTML =
+    sorted.map(([s,d]) => `
+      <div class="ov-row" onclick="showState('${s}',COMPANIES['${s}'])">
+        <span class="ov-s">${s}</span>
+        <span class="ov-n">${d.count} emp.</span>
+      </div>`).join('');
+}
+</script>
+</body>
+</html>
