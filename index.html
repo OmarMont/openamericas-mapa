@@ -56,7 +56,7 @@ header .sub{font-size:.75rem;color:#adc8e8;margin-top:2px}
     <div class="sub">Prospectos verificados con contacto directo · Junio 2026 · Haz clic en un estado para ver sus empresas</div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="n">90</div><div class="l">Empresas</div></div>
+    <div class="stat"><div class="n">98</div><div class="l">Empresas</div></div>
     <div class="stat"><div class="n">21</div><div class="l">Estados</div></div>
     <div class="stat"><div class="n">35</div><div class="l">Categorías</div></div>
   </div>
@@ -106,7 +106,7 @@ const COMPANIES = {
     {n:"Corazón de Parota",p:"Muebles artesanales de madera de parota tallados a mano — mesas, comedores, camas y salas, diseño oaxaqueño único",t:"Alta",c:"Tel: (951) 147 61 40"},
     {n:"Estudio Madera Oaxaca",p:"Taller de muebles finos en maderas locales — diseño contemporáneo con raíces oaxaqueñas, producción directa de fábrica",t:"Alta",c:"Tel: +52 (951) 100 5776"},
   ]},
-  "Chiapas":{lat:16.75,lon:-93.12,count:16,color:"#e63946",companies:[
+  "Chiapas":{lat:16.75,lon:-93.12,count:17,color:"#e63946",companies:[
     {n:"Sna Jolobil (Cooperativa)",p:"Textiles tzotziles y tzeltales tejidos a mano, huipiles",t:"Alta",c:"Tel: (967) 678-2646"},
     {n:"Jolom Mayaetik (Cooperativa)",p:"Bordados a mano por mujeres indígenas de los Altos",t:"Alta",c:"Tel: (967) 112-5071"},
     {n:"Nich Chiapas (Cooperativa Tzotzil)",p:"Textiles con flores y bordados de Zinacantán",t:"Alta",c:"IG: @nich_chiapas"},
@@ -123,11 +123,13 @@ const COMPANIES = {
     {n:"CEDECOT A.C.",p:"Café orgánico de comunidades tzeltal, San Juan Cancuc",t:"Alta",c:"amecafe.org.mx"},
     {n:"NAE Cosmética Natural",p:"Cosméticos 100% naturales elaborados en Chiapas — sueros, cremas y aceites con tepezcohuite, bakuchiol y rosa mosqueta, 98.8% ingredientes naturales",t:"Alta",c:"Tel: +52 961 659 1914"},
     {n:"Cooperativa Jvaychil",p:"49 mujeres tsotsiles de Chenalhó — blusas, bolsas y textiles bordados a mano con figuras mayas tradicionales, comercio justo directo del taller",t:"Alta",c:"Tel: 967 109 8247"},
+    {n:"K'antal Miel Melipona",p:"Miel de abeja melipona pura de Tapachula, Chiapas — producción artesanal por apicultores locales, propiedades medicinales únicas, certificada natural",t:"Alta",c:"Tel: 962 111 8015"},
   ]},
-  "Puebla":{lat:19.04,lon:-98.20,count:3,color:"#457b9d",companies:[
+  "Puebla":{lat:19.04,lon:-98.20,count:4,color:"#457b9d",companies:[
     {n:"Mueblería Misantla",p:"Muebles artesanales de cedro y caoba a medida — comedores, recámaras y closets con acabados de lujo, más de 20 años de experiencia",t:"Alta",c:"Tel: 221 184-5926"},
     {n:"Madecor Muebles",p:"Fábrica poblana de muebles decorativos y de uso residencial en maderas finas — diseños personalizados y venta directa de fábrica",t:"Alta",c:"Tel: (222) 285 0300"},
     {n:"Caan Crudo Velas",p:"Velas artesanales de cera de abeja pura 100%, elaboradas sin moldes de forma tradicional en la Sierra Norte de Puebla — aroma natural de miel, sin químicos",t:"Alta",c:"caancrudo.com"},
+    {n:"Segusino Muebles Artesanales",p:"Muebles artesanales de maderas recuperadas y antiguas — 30+ años de experiencia, piezas únicas para hogar y decoración, Chipilo, Puebla",t:"Alta",c:"Tel: 222 584 7534"},
   ]},
   "Guerrero":{lat:17.55,lon:-99.50,count:4,color:"#457b9d",companies:[
     {n:"La Bodeguita del Mueble",p:"Fábrica de muebles de madera artesanales a la medida en Chilpancingo — comedores, recámaras y salas de alta calidad, 20+ años",t:"Alta",c:"Tel: 744 458 8579"},
@@ -151,7 +153,7 @@ const COMPANIES = {
     {n:"Vainilla Murralh",p:"Productores de vainilla original de Papantla",t:"Alta",c:"WA: +52 229 550-0134"},
     {n:"Santa Elena Café Artesanal",p:"Café de altura de Veracruz, 1,300 msnm en Coatepec",t:"Alta",c:"Tel: +52 228 298-5804"},
   ]},
-  "Yucatán":{lat:20.97,lon:-89.62,count:7,color:"#f4a261",companies:[
+  "Yucatán":{lat:20.97,lon:-89.62,count:9,color:"#f4a261",companies:[
     {n:"Artemayab",p:"Hamacas artesanales yucatecas, gran variedad de materiales",t:"Alta",c:"Tel: (999) 497-0788"},
     {n:"Hamacas Mayajal",p:"Mayorista de hamacas tradicionales yucatecas",t:"Alta",c:"Tel: 991 959-6741"},
     {n:"Hamacas El Charrito",p:"Hamacas artesanales, casi 80 años de tradición familiar",t:"Alta",c:"Tel: 991 611-0115"},
@@ -159,23 +161,29 @@ const COMPANIES = {
     {n:"Cooperativas Apícolas Mayas",p:"Miel virgen de abeja melipona, 100% orgánica, única en el mundo",t:"Alta"},
     {n:"Yucabee Miel Maya",p:"Miel de abeja melipona sustentable, cosecha directa de productores mayas — sabor único, sin procesar, certificada orgánica",t:"Alta",c:"Tel: +52 985 147 3187"},
     {n:"Roots Garate Muebles",p:"Muebles artesanales de madera tropical (cedro, tzalam, caoba) con estilo bohemio mexicano — piezas únicas para hogar, Mérida",t:"Alta",c:"Tel: 999 556 6042"},
+    {n:"Hamacas La Pirámide",p:"Fábrica familiar de hamacas artesanales en Tixkokob — algodón, nylon y crochet tejidos a mano, venta mayoreo y menudeo con envíos nacionales e internacionales",t:"Alta",c:"Tel: 991 106 4935"},
+    {n:"Hamacas Yuum Haax",p:"Fabricante de hamacas yucatecas de alta calidad con personalización — atención mayoreo para hoteles, turismo y decoración, Mérida",t:"Alta",c:"yuumhaax.com"},
   ]},
-  "Jalisco":{lat:20.68,lon:-103.35,count:3,color:"#457b9d",companies:[
+  "Jalisco":{lat:20.68,lon:-103.35,count:4,color:"#457b9d",companies:[
     {n:"Vidrio Artístico Imperial",p:"Vidrio soplado artesanal a mano, piezas decorativas únicas, copas, jarrones y figuras de colección",t:"Alta",c:"Tel: 331 884 3665"},
     {n:"Azteca Rústicos",p:"Muebles rústicos artesanales de madera de parota y mezquite — comedores, camas y sillones hechos a mano, Tonalá, 20+ años",t:"Alta",c:"Tel: (33) 3683-7711"},
     {n:"Muebles Ébano",p:"Fábrica de muebles personalizados en madera de alta calidad, Guadalajara/Tonalá — diseños desde clásico hasta minimalista, venta directa de fábrica",t:"Alta",c:"Tel: (33) 3101 4325"},
+    {n:"Artcumex Muebles Rústicos",p:"Fábrica 100% mexicana de muebles rústicos artesanales en madera y piel — comedores, recámaras y accesorios hechos a mano en Tonalá, Jalisco",t:"Alta",c:"Tel: +52 33 2222-5710"},
   ]},
-  "Guanajuato":{lat:21.02,lon:-101.26,count:5,color:"#f4a261",companies:[
+  "Guanajuato":{lat:21.02,lon:-101.26,count:7,color:"#f4a261",companies:[
     {n:"Torres Mochas Artículos en Piel",p:"Bolsas artesanales de piel hechas a mano, León",t:"Media",c:"Tel: (477) 786-6386"},
     {n:"Piel Esmeralda",p:"Calzado y artículos de piel artesanal, orgullosamente leonés",t:"Media",c:"WA: +52 477 908-8848"},
     {n:"Vianala Bolsas de Piel",p:"Casa marroquinera de León: bolsas y carteras artesanales de piel genuina, alta calidad y diseño 100% mexicano, venta directa de fábrica",t:"Alta",c:"Tel: (477) 713 33 05"},
     {n:"Marquesa de Mancera",p:"Muebles y piezas hechas a mano en San Miguel de Allende — comedores, sillas y mesas de madera con acabados artesanales únicos",t:"Alta",c:"Tel: (415) 152 1047"},
     {n:"Botas Doble R",p:"Botas vaqueras artesanales de piel 100% genuina — cada par hecho a mano en León, 14+ años de tradición botería",t:"Alta",c:"Tel: (477) 758-2833"},
+    {n:"Marua Piel",p:"Bolsas y accesorios 100% piel genuina de León — diseños exclusivos para mujer, producción artesanal directa de fábrica, alta calidad garantizada",t:"Alta",c:"Tel: 477 489 4593"},
+    {n:"Montalvo Farret",p:"Diseño y fabricación artesanal de bolsas para dama en León — 10+ años de experiencia, piel genuina premium, modelos únicos sin exportación a EE.UU.",t:"Alta",c:"montalvofarret.com"},
   ]},
-  "Campeche":{lat:19.85,lon:-90.53,count:3,color:"#457b9d",companies:[
+  "Campeche":{lat:19.85,lon:-90.53,count:4,color:"#457b9d",companies:[
     {n:"Teya Artesanal",p:"Sombreros jipijapa tejidos a mano, estilo maya campechano",t:"Alta",c:"WA: +52 999 332-2098"},
     {n:"Artesanos Lool Jipi (Bécal)",p:"Sombreros jipijapa tejidos en cuevas, tradición maya",t:"Alta",c:"Tel: (996) 431-4326"},
     {n:"Envasadora de Miel Campeche",p:"Miel pura artesanal de abeja melífera, producción familiar sin aditivos — una de las mieles más limpias del sureste mexicano",t:"Alta",c:"Tel: (981) 817-7510"},
+    {n:"Miel y Cera de Campeche",p:"Miel de abeja melipona pura de la zona maya de Campeche — producción artesanal certificada, la miel más rara y valiosa del mundo",t:"Alta",c:"Tel: (981) 817-5261"},
   ]},
   "Hidalgo":{lat:20.12,lon:-98.73,count:2,color:"#457b9d",companies:[
     {n:"Bordados Artesanales Mi Tenango",p:"Bordados otomíes a mano con diseños de animales y naturaleza",t:"Alta",c:"Tel: +52 771 222-1250"},
