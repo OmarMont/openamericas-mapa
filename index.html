@@ -56,8 +56,8 @@ header .sub{font-size:.75rem;color:#adc8e8;margin-top:2px}
     <div class="sub">Prospectos verificados con contacto directo · Junio 2026 · Haz clic en un estado para ver sus empresas</div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="n">124</div><div class="l">Empresas</div></div>
-    <div class="stat"><div class="n">23</div><div class="l">Estados</div></div>
+    <div class="stat"><div class="n">128</div><div class="l">Empresas</div></div>
+    <div class="stat"><div class="n">25</div><div class="l">Estados</div></div>
     <div class="stat"><div class="n">35</div><div class="l">Categorías</div></div>
   </div>
 </header>
@@ -215,16 +215,18 @@ const COMPANIES = {
     {n:"Muebles Artesanales de Cuanajo",p:"Muebles tallados a mano en madera de pino y aile con diseños de flores y animales — Cuanajo, cuna del mueble artesanal michoacano",t:"Alta",c:"Tel: +52 443 373 2429"},
     {n:"Rancho San Cayetano",p:"Miel orgánica artesanal del Altiplano Michoacano — zona Reserva Mariposa Monarca en Zitácuaro, certificada Kosher y Bioagricert, miel líquida y mantequilla natural sin procesar",t:"Alta",c:"Amazon México: Rancho San Cayetano"},
   ]},
-  "Estado de México":{lat:19.29,lon:-99.66,count:2,color:"#457b9d",companies:[
+  "Estado de México":{lat:19.29,lon:-99.66,count:3,color:"#457b9d",companies:[
     {n:"Rebozos Tenancingo",p:"Rebozos artesanales tejidos en telar de cintura, desde 1908",t:"Alta",c:"Tel: (714) 142-0246"},
     {n:"Herrería y Forja Artística Vulcano",p:"35 años fabricando puertas, portones y estructuras de hierro forjado artístico en Ecatepec — diseños exclusivos a medida para hogar y empresa",t:"Alta",c:"herreriayforjaartisticavulcano.com"},
+    {n:"BONSAR",p:"Artesanos de Teotihuacán con 40 años fabricando artículos de piel — carteras, bolsas, cinturones y accesorios con técnicas italianas y mexicanas, producción artesanal directa",t:"Alta",c:"bonsar.com.mx"},
   ]},
   "San Luis Potosí":{lat:22.16,lon:-100.98,count:1,color:"#6c757d",companies:[
     {n:"Rebozos de Santa María del Río",p:"Rebozos de seda tejidos a mano, los más finos de México",t:"Alta",c:"Tel: +52 485 102-8733"},
   ]},
-  "Querétaro":{lat:20.59,lon:-100.39,count:2,color:"#457b9d",companies:[
+  "Querétaro":{lat:20.59,lon:-100.39,count:3,color:"#457b9d",companies:[
     {n:"Nierika Arte Huichol",p:"Pinturas de estambre y figuras con chaquira hechas a mano por comunidades Wixáritari, arte sagrado único",t:"Alta",c:"Tel: 442 660-3975"},
     {n:"Newood",p:"Carpintería profesional en Querétaro — puertas de madera sólida, melamina y gran formato de alta calidad, 20+ años de experiencia, envíos nacionales",t:"Alta",c:"newood.mx"},
+    {n:"MADECO",p:"Fabricante de closets, cocinas integrales y puertas de madera a medida en Querétaro — 25 años de experiencia, diseños modernos y funcionales, producción 100% en México",t:"Alta",c:"madecomx.com"},
   ]},
   "Nayarit":{lat:21.75,lon:-104.85,count:1,color:"#6c757d",companies:[
     {n:"Tatehuari Arte Huichol",p:"Artículos decorativos con técnicas artesanales Wixáritari, joyería y tapices de estambre originales",t:"Alta"},
@@ -253,6 +255,12 @@ const COMPANIES = {
   "Baja California Sur":{lat:25.50,lon:-111.50,count:1,color:"#6c757d",companies:[
     {n:"Chocola-Tre",p:"Primera fábrica bean-to-bar de Baja California Sur en San José del Cabo — chocolate artesanal de cacao 100% mexicano, proceso completo de la semilla a la barra",t:"Alta",c:"chocola-tre.com / Tel: (624) 179 1227"},
   ]},
+  "Aguascalientes":{lat:21.88,lon:-102.30,count:1,color:"#6c757d",companies:[
+    {n:"Bordados San Marcos",p:"Comercializadora de los famosos calados y deshilados artesanales de Aguascalientes — tradición textil única del estado, bordados a mano con técnica prehispánica transmitida por generaciones",t:"Alta",c:"bordadossanmarcos.mx"},
+  ]},
+  "Morelos":{lat:18.90,lon:-99.10,count:1,color:"#6c757d",companies:[
+    {n:"MACETÓN",p:"Empresa familiar de Emiliano Zapata que trabaja con 33+ artesanos ceramistas de Morelos — macetas y floreros de cerámica 100% artesanal, distribución nacional, 50+ años de tradición familiar",t:"Alta",c:"maceton.com.mx"},
+  ]},
 };
 
 // Map between GeoJSON state names → our data keys
@@ -275,6 +283,8 @@ const NAME_MAP = {
   "Tabasco":"Tabasco",
   "Tlaxcala":"Tlaxcala",
   "Quintana Roo":"Quintana Roo",
+  "Aguascalientes":"Aguascalientes",
+  "Morelos":"Morelos",
 };
 
 function radius(n){return n>=15?26:n>=10?21:n>=5?17:n>=3?13:n>=2?10:8}
