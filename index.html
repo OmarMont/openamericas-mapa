@@ -56,9 +56,9 @@ header .sub{font-size:.75rem;color:#adc8e8;margin-top:2px}
     <div class="sub">Prospectos verificados con contacto directo · Junio 2026 · Haz clic en un estado para ver sus empresas</div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="n">128</div><div class="l">Empresas</div></div>
-    <div class="stat"><div class="n">25</div><div class="l">Estados</div></div>
-    <div class="stat"><div class="n">35</div><div class="l">Categorías</div></div>
+    <div class="stat"><div class="n">135</div><div class="l">Empresas</div></div>
+    <div class="stat"><div class="n">28</div><div class="l">Estados</div></div>
+    <div class="stat"><div class="n">37</div><div class="l">Categorías</div></div>
   </div>
 </header>
 <div class="body">
@@ -135,11 +135,12 @@ const COMPANIES = {
     {n:"Segusino Muebles Artesanales",p:"Muebles artesanales de maderas recuperadas y antiguas — 30+ años de experiencia, piezas únicas para hogar y decoración, Chipilo, Puebla",t:"Alta",c:"Tel: 222 584 7534"},
     {n:"Casafuego",p:"Velas artesanales de cera de soya 100% natural con aceites esenciales, contenedores de cerámica hechos a mano — cada pieza única e irrepetible, Puebla",t:"Alta",c:"Tel: +52 55 2295 4279 / casafuegocasa@gmail.com"},
   ]},
-  "Guerrero":{lat:17.55,lon:-99.50,count:4,color:"#457b9d",companies:[
+  "Guerrero":{lat:17.55,lon:-99.50,count:5,color:"#f4a261",companies:[
     {n:"La Bodeguita del Mueble",p:"Fábrica de muebles de madera artesanales a la medida en Chilpancingo — comedores, recámaras y salas de alta calidad, 20+ años",t:"Alta",c:"Tel: 744 458 8579"},
     {n:"Fábrica de Muebles Guerrero",p:"Fabricante directo de muebles de madera en Chilpancingo — camas, burós y cómodas con acabados finos, venta directa sin intermediarios",t:"Alta",c:"fabrica-de-muebles-guerrero.ueniweb.com"},
     {n:"Carpintería El Calvario",p:"Taller de carpintería artesanal en Chilpancingo — muebles y accesorios de madera a la medida con diseño personalizado",t:"Alta",c:"FB: Carpinteria el calvario"},
     {n:"Muebles Rústicos Guerrero",p:"Fabricante de muebles rústicos artesanales en madera de mezquite y cedro — piezas únicas para hogar, estilo mexicano campestre, Guerrero",t:"Alta",c:"guia-guerrero.guiamexico.com.mx"},
+    {n:"Artesanías Olinalá",p:"Taller de lacas y maque artesanal de Olinalá, Guerrero — técnica prehispánica de barniz natural en madera de lináloe, cajas y baúles pintados a mano desde generaciones",t:"Alta",c:"arteolinala.com.mx"},
   ]},
   "Ciudad de México":{lat:19.43,lon:-99.13,count:12,color:"#f4a261",companies:[
     {n:"Violeta Orgánica",p:"Jabones y cosméticos artesanales 100% naturales y orgánicos",t:"Media",c:"Tel: +52 331 237-4097"},
@@ -176,7 +177,7 @@ const COMPANIES = {
     {n:"Hamacas Yuum Haax",p:"Fabricante de hamacas yucatecas de alta calidad con personalización — atención mayoreo para hoteles, turismo y decoración, Mérida",t:"Alta",c:"yuumhaax.com"},
     {n:"Oasis Mayahamacas",p:"Empresa familiar de Mérida que fabrica hamacas artesanales yucatecas hechas por mujeres de comunidades rurales — algodón, nylon y macramé, venta en MercadoLibre y Amazon México",t:"Alta",c:"oasismayahamacas.com.mx"},
   ]},
-  "Jalisco":{lat:20.68,lon:-103.35,count:10,color:"#f4a261",companies:[
+  "Jalisco":{lat:20.68,lon:-103.35,count:11,color:"#f4a261",companies:[
     {n:"Vidrio Artístico Imperial",p:"Vidrio soplado artesanal a mano, piezas decorativas únicas, copas, jarrones y figuras de colección",t:"Alta",c:"Tel: 331 884 3665"},
     {n:"Azteca Rústicos",p:"Muebles rústicos artesanales de madera de parota y mezquite — comedores, camas y sillones hechos a mano, Tonalá, 20+ años",t:"Alta",c:"Tel: (33) 3683-7711"},
     {n:"Muebles Ébano",p:"Fábrica de muebles personalizados en madera de alta calidad, Guadalajara/Tonalá — diseños desde clásico hasta minimalista, venta directa de fábrica",t:"Alta",c:"Tel: (33) 3101 4325"},
@@ -187,6 +188,7 @@ const COMPANIES = {
     {n:"La Broma de Teo",p:"Chocolatería artesanal bean-to-bar en Guadalajara — cacao nativo de Chiapas, fermentado y procesado a mano, barras y chocolate de mesa sin conservantes",t:"Alta",c:"labromadeteo.com / Reforma 1110, Santa Teresita, GDL"},
     {n:"Casa Lorea",p:"Granola artesanal en pequeños lotes hecha a mano por chef/nutrióloga en Chapala — ingredientes 100% naturales, sin azúcar refinado ni conservadores",t:"Alta",c:"lorea@casalorea.mx / casalorea.mx"},
     {n:"Tekni-K",p:"Fabricante de cocinas integrales a medida en Guadalajara — 50 años de experiencia, diseños modernos y contemporáneos, producción 100% en México",t:"Alta",c:"tekni-k.mx"},
+    {n:"Equipales Cantora",p:"Fabricante de equipales artesanales en Zacoalco de Torres — la cuna del equipal, 4ª generación desde 1985, sillas y sillones de madera y cuero 100% hechos a mano",t:"Alta",c:"Tel: +52 33 1722 5092 / equipalescantor.com"},
   ]},
   "Guanajuato":{lat:21.02,lon:-101.26,count:8,color:"#f4a261",companies:[
     {n:"Torres Mochas Artículos en Piel",p:"Bolsas artesanales de piel hechas a mano, León",t:"Media",c:"Tel: (477) 786-6386"},
@@ -220,8 +222,9 @@ const COMPANIES = {
     {n:"Herrería y Forja Artística Vulcano",p:"35 años fabricando puertas, portones y estructuras de hierro forjado artístico en Ecatepec — diseños exclusivos a medida para hogar y empresa",t:"Alta",c:"herreriayforjaartisticavulcano.com"},
     {n:"BONSAR",p:"Artesanos de Teotihuacán con 40 años fabricando artículos de piel — carteras, bolsas, cinturones y accesorios con técnicas italianas y mexicanas, producción artesanal directa",t:"Alta",c:"bonsar.com.mx"},
   ]},
-  "San Luis Potosí":{lat:22.16,lon:-100.98,count:1,color:"#6c757d",companies:[
+  "San Luis Potosí":{lat:22.16,lon:-100.98,count:2,color:"#457b9d",companies:[
     {n:"Rebozos de Santa María del Río",p:"Rebozos de seda tejidos a mano, los más finos de México",t:"Alta",c:"Tel: +52 485 102-8733"},
+    {n:"Rochwood MX",p:"Fábrica de comedores y muebles de madera sólida en San Luis Potosí — diseños contemporáneos con acabados artesanales de lujo, ebanistería de alta calidad",t:"Alta",c:"rochwood.com / FB: ROCHWOOD MX"},
   ]},
   "Querétaro":{lat:20.59,lon:-100.39,count:3,color:"#457b9d",companies:[
     {n:"Nierika Arte Huichol",p:"Pinturas de estambre y figuras con chaquira hechas a mano por comunidades Wixáritari, arte sagrado único",t:"Alta",c:"Tel: 442 660-3975"},
@@ -243,8 +246,9 @@ const COMPANIES = {
     {n:"CACEP Chocolates",p:"Chocolate artesanal de cacao orgánico de hacienda propia en Comalcalco, Tabasco — empresa familiar que cultiva, cosecha y produce",t:"Alta",c:"Tel: 933 124 7579"},
     {n:"Siij Chocolate Ancestral",p:"Chocolatería ancestral de Comalcalco, Tabasco — cacao nativo de la región Chontalpa, Medalla de Oro AVPA París 2021, 2022 y 2023, proceso bean-to-bar artesanal",t:"Alta",c:"IG/FB: @SiijChocolate"},
   ]},
-  "Tlaxcala":{lat:19.32,lon:-98.24,count:1,color:"#6c757d",companies:[
+  "Tlaxcala":{lat:19.32,lon:-98.24,count:2,color:"#457b9d",companies:[
     {n:"Artesanías San Martín",p:"Textiles artesanales mexicanos tejidos en telar: ponchos, gabanes y huipiles con diseños tradicionales tlaxcaltecas, venta al mayoreo",t:"Alta",c:"artesaniassanmartin.mx"},
+    {n:"Talavera Tézmol",p:"Taller de talavera auténtica certificada en San Pablo del Monte, Tlaxcala — fundado en 1997 por el maestro Joel Tézmol, piezas decorativas y utilitarias hechas y pintadas a mano",t:"Alta",c:"IG/FB: @TezmolTlax"},
   ]},
   "Quintana Roo":{lat:19.65,lon:-87.80,count:1,color:"#6c757d",companies:[
     {n:"Melipona Maya",p:"Miel de abeja melipona (Xunan Kab) cosechada artesanalmente por apicultores mayas en Tulum — considerada el 'oro maya', sin paralelo en el mundo",t:"Alta",c:"Tel: (984) 871 2233"},
@@ -256,10 +260,19 @@ const COMPANIES = {
     {n:"Chocola-Tre",p:"Primera fábrica bean-to-bar de Baja California Sur en San José del Cabo — chocolate artesanal de cacao 100% mexicano, proceso completo de la semilla a la barra",t:"Alta",c:"chocola-tre.com / Tel: (624) 179 1227"},
   ]},
   "Aguascalientes":{lat:21.88,lon:-102.30,count:1,color:"#6c757d",companies:[
-    {n:"Bordados San Marcos",p:"Comercializadora de los famosos calados y deshilados artesanales de Aguascalientes — tradición textil única del estado, bordados a mano con técnica prehispánica transmitida por generaciones",t:"Alta",c:"bordadossanmarcos.mx"},
+    {n:"Bordados San Marcos",p:"Comercializadora de los famosos calados y deshilados artesanales de Aguascalientes — tradición textil única del estado, bordados a mano con técnica prehispánica transmitida por generaciones, desde 1975",t:"Alta",c:"Tel: (449) 915-0557 / bordadossanmarcos.mx"},
   ]},
   "Morelos":{lat:18.90,lon:-99.10,count:1,color:"#6c757d",companies:[
     {n:"MACETÓN",p:"Empresa familiar de Emiliano Zapata que trabaja con 33+ artesanos ceramistas de Morelos — macetas y floreros de cerámica 100% artesanal, distribución nacional, 50+ años de tradición familiar",t:"Alta",c:"maceton.com.mx"},
+  ]},
+  "Zacatecas":{lat:22.77,lon:-102.58,count:1,color:"#6c757d",companies:[
+    {n:"Sarapes México",p:"Sarapes charros artesanales tejidos a mano en telares de más de 100 años — diseños multicolores únicos, acrílico y algodón, Río Grande, Zacatecas",t:"Alta",c:"WA: 498 110 4668 / sarapesmexico.com"},
+  ]},
+  "Sinaloa":{lat:24.80,lon:-107.39,count:1,color:"#6c757d",companies:[
+    {n:"Muebles Peraza",p:"Muebles artesanales de cedro 100% hechos a mano en Concordia, pueblo mágico mueblero de Sinaloa — comedores, salas y recámaras a medida con acabados finos",t:"Alta",c:"WA: 694 119 5553 / mueblesperaza.com.mx"},
+  ]},
+  "Baja California":{lat:29.80,lon:-115.10,count:1,color:"#6c757d",companies:[
+    {n:"OCOTE® Cerámica",p:"Estudio de cerámica artesanal en Tijuana fundado en 2018 — piezas utilitarias únicas modeladas y vidriadas a mano por Flavio Vela, clases y colecciones de diseño local",t:"Alta",c:"IG: @ocoteceramica / ocoteceramica.com"},
   ]},
 };
 
@@ -285,6 +298,9 @@ const NAME_MAP = {
   "Quintana Roo":"Quintana Roo",
   "Aguascalientes":"Aguascalientes",
   "Morelos":"Morelos",
+  "Zacatecas":"Zacatecas",
+  "Sinaloa":"Sinaloa",
+  "Baja California":"Baja California",
 };
 
 function radius(n){return n>=15?26:n>=10?21:n>=5?17:n>=3?13:n>=2?10:8}
