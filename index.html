@@ -56,8 +56,8 @@ header .sub{font-size:.75rem;color:#adc8e8;margin-top:2px}
     <div class="sub">Prospectos verificados con contacto directo · Junio 2026 · Haz clic en un estado para ver sus empresas</div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="n">116</div><div class="l">Empresas</div></div>
-    <div class="stat"><div class="n">21</div><div class="l">Estados</div></div>
+    <div class="stat"><div class="n">124</div><div class="l">Empresas</div></div>
+    <div class="stat"><div class="n">23</div><div class="l">Estados</div></div>
     <div class="stat"><div class="n">35</div><div class="l">Categorías</div></div>
   </div>
 </header>
@@ -176,7 +176,7 @@ const COMPANIES = {
     {n:"Hamacas Yuum Haax",p:"Fabricante de hamacas yucatecas de alta calidad con personalización — atención mayoreo para hoteles, turismo y decoración, Mérida",t:"Alta",c:"yuumhaax.com"},
     {n:"Oasis Mayahamacas",p:"Empresa familiar de Mérida que fabrica hamacas artesanales yucatecas hechas por mujeres de comunidades rurales — algodón, nylon y macramé, venta en MercadoLibre y Amazon México",t:"Alta",c:"oasismayahamacas.com.mx"},
   ]},
-  "Jalisco":{lat:20.68,lon:-103.35,count:9,color:"#f4a261",companies:[
+  "Jalisco":{lat:20.68,lon:-103.35,count:10,color:"#f4a261",companies:[
     {n:"Vidrio Artístico Imperial",p:"Vidrio soplado artesanal a mano, piezas decorativas únicas, copas, jarrones y figuras de colección",t:"Alta",c:"Tel: 331 884 3665"},
     {n:"Azteca Rústicos",p:"Muebles rústicos artesanales de madera de parota y mezquite — comedores, camas y sillones hechos a mano, Tonalá, 20+ años",t:"Alta",c:"Tel: (33) 3683-7711"},
     {n:"Muebles Ébano",p:"Fábrica de muebles personalizados en madera de alta calidad, Guadalajara/Tonalá — diseños desde clásico hasta minimalista, venta directa de fábrica",t:"Alta",c:"Tel: (33) 3101 4325"},
@@ -186,6 +186,7 @@ const COMPANIES = {
     {n:"Gran Tostador",p:"Cafetería y tostadora artesanal en Zapopan — granos 100% mexicanos de Chiapas, Veracruz, Oaxaca y Nayarit, tostados diario",t:"Alta",c:"cafegrantostador.com / IG: @gran_tostador"},
     {n:"La Broma de Teo",p:"Chocolatería artesanal bean-to-bar en Guadalajara — cacao nativo de Chiapas, fermentado y procesado a mano, barras y chocolate de mesa sin conservantes",t:"Alta",c:"labromadeteo.com / Reforma 1110, Santa Teresita, GDL"},
     {n:"Casa Lorea",p:"Granola artesanal en pequeños lotes hecha a mano por chef/nutrióloga en Chapala — ingredientes 100% naturales, sin azúcar refinado ni conservadores",t:"Alta",c:"lorea@casalorea.mx / casalorea.mx"},
+    {n:"Tekni-K",p:"Fabricante de cocinas integrales a medida en Guadalajara — 50 años de experiencia, diseños modernos y contemporáneos, producción 100% en México",t:"Alta",c:"tekni-k.mx"},
   ]},
   "Guanajuato":{lat:21.02,lon:-101.26,count:8,color:"#f4a261",companies:[
     {n:"Torres Mochas Artículos en Piel",p:"Bolsas artesanales de piel hechas a mano, León",t:"Media",c:"Tel: (477) 786-6386"},
@@ -207,20 +208,23 @@ const COMPANIES = {
     {n:"Bordados Artesanales Mi Tenango",p:"Bordados otomíes a mano con diseños de animales y naturaleza",t:"Alta",c:"Tel: +52 771 222-1250"},
     {n:"Mila Textiles Bordados",p:"Ropa artesanal mexicana con bordados tenango",t:"Alta",c:"Tel: 222 895-4336"},
   ]},
-  "Michoacán":{lat:19.70,lon:-101.19,count:4,color:"#457b9d",companies:[
+  "Michoacán":{lat:19.70,lon:-101.19,count:5,color:"#457b9d",companies:[
     {n:"Artesanos de Tzintzuntzan",p:"Cestería de tule y chuspata, petates y canastas michoacanas",t:"Alta",c:"Tel: (452) 524-1392"},
     {n:"Cobre Martillado Torres",p:"Cazos, tinas, lavamanos y campanas de cobre martillado a mano, piezas únicas para hoteles y restaurantes",t:"Alta",c:"cobremartilladotorres.com"},
     {n:"Cobre Santa Clara",p:"Tarjas, lavamanos y tinas de cobre martillado de lujo — accesorios artesanales para cocina y baño de alta gama, Santa Clara del Cobre",t:"Alta",c:"Tel: +52 434 159 0027"},
     {n:"Muebles Artesanales de Cuanajo",p:"Muebles tallados a mano en madera de pino y aile con diseños de flores y animales — Cuanajo, cuna del mueble artesanal michoacano",t:"Alta",c:"Tel: +52 443 373 2429"},
+    {n:"Rancho San Cayetano",p:"Miel orgánica artesanal del Altiplano Michoacano — zona Reserva Mariposa Monarca en Zitácuaro, certificada Kosher y Bioagricert, miel líquida y mantequilla natural sin procesar",t:"Alta",c:"Amazon México: Rancho San Cayetano"},
   ]},
-  "Estado de México":{lat:19.29,lon:-99.66,count:1,color:"#6c757d",companies:[
+  "Estado de México":{lat:19.29,lon:-99.66,count:2,color:"#457b9d",companies:[
     {n:"Rebozos Tenancingo",p:"Rebozos artesanales tejidos en telar de cintura, desde 1908",t:"Alta",c:"Tel: (714) 142-0246"},
+    {n:"Herrería y Forja Artística Vulcano",p:"35 años fabricando puertas, portones y estructuras de hierro forjado artístico en Ecatepec — diseños exclusivos a medida para hogar y empresa",t:"Alta",c:"herreriayforjaartisticavulcano.com"},
   ]},
   "San Luis Potosí":{lat:22.16,lon:-100.98,count:1,color:"#6c757d",companies:[
     {n:"Rebozos de Santa María del Río",p:"Rebozos de seda tejidos a mano, los más finos de México",t:"Alta",c:"Tel: +52 485 102-8733"},
   ]},
-  "Querétaro":{lat:20.59,lon:-100.39,count:1,color:"#457b9d",companies:[
+  "Querétaro":{lat:20.59,lon:-100.39,count:2,color:"#457b9d",companies:[
     {n:"Nierika Arte Huichol",p:"Pinturas de estambre y figuras con chaquira hechas a mano por comunidades Wixáritari, arte sagrado único",t:"Alta",c:"Tel: 442 660-3975"},
+    {n:"Newood",p:"Carpintería profesional en Querétaro — puertas de madera sólida, melamina y gran formato de alta calidad, 20+ años de experiencia, envíos nacionales",t:"Alta",c:"newood.mx"},
   ]},
   "Nayarit":{lat:21.75,lon:-104.85,count:1,color:"#6c757d",companies:[
     {n:"Tatehuari Arte Huichol",p:"Artículos decorativos con técnicas artesanales Wixáritari, joyería y tapices de estambre originales",t:"Alta"},
@@ -228,18 +232,26 @@ const COMPANIES = {
   "Chihuahua":{lat:28.63,lon:-106.07,count:1,color:"#6c757d",companies:[
     {n:"Arte en Barro (Mata Ortiz)",p:"Cerámica fina de alta colección, técnica única de Juan Mata Ortiz reconocida en galerías internacionales",t:"Alta",c:"WA: +52 636 134 3713"},
   ]},
-  "Nuevo León":{lat:25.67,lon:-100.31,count:2,color:"#457b9d",companies:[
+  "Nuevo León":{lat:25.67,lon:-100.31,count:3,color:"#457b9d",companies:[
     {n:"Piel Arena",p:"Bolsas artesanales de piel hechas a mano en Monterrey — diseño mexicano contemporáneo, acabados de lujo y materiales premium",t:"Alta",c:"pielarena.mx"},
     {n:"GOT Muebles",p:"Fábrica de muebles de madera a la medida, 40+ años de experiencia — comedores, recámaras, cocinas y mobiliario para hoteles y restaurantes, Monterrey",t:"Alta",c:"Tel: +52 81 1299 0280"},
+    {n:"Herrería BNA",p:"Fábrica de puertas y portones de hierro forjado desde 1975 en Monterrey — diseños residenciales e industriales a medida, herreros profesionales con décadas de experiencia",t:"Alta",c:"puertasdeforjamonterrey.com"},
   ]},
-  "Tabasco":{lat:17.99,lon:-92.93,count:1,color:"#6c757d",companies:[
+  "Tabasco":{lat:17.99,lon:-92.93,count:2,color:"#457b9d",companies:[
     {n:"CACEP Chocolates",p:"Chocolate artesanal de cacao orgánico de hacienda propia en Comalcalco, Tabasco — empresa familiar que cultiva, cosecha y produce",t:"Alta",c:"Tel: 933 124 7579"},
+    {n:"Siij Chocolate Ancestral",p:"Chocolatería ancestral de Comalcalco, Tabasco — cacao nativo de la región Chontalpa, Medalla de Oro AVPA París 2021, 2022 y 2023, proceso bean-to-bar artesanal",t:"Alta",c:"IG/FB: @SiijChocolate"},
   ]},
   "Tlaxcala":{lat:19.32,lon:-98.24,count:1,color:"#6c757d",companies:[
     {n:"Artesanías San Martín",p:"Textiles artesanales mexicanos tejidos en telar: ponchos, gabanes y huipiles con diseños tradicionales tlaxcaltecas, venta al mayoreo",t:"Alta",c:"artesaniassanmartin.mx"},
   ]},
   "Quintana Roo":{lat:19.65,lon:-87.80,count:1,color:"#6c757d",companies:[
     {n:"Melipona Maya",p:"Miel de abeja melipona (Xunan Kab) cosechada artesanalmente por apicultores mayas en Tulum — considerada el 'oro maya', sin paralelo en el mundo",t:"Alta",c:"Tel: (984) 871 2233"},
+  ]},
+  "Coahuila":{lat:27.06,lon:-101.71,count:1,color:"#6c757d",companies:[
+    {n:"Gaalxim",p:"Sarapes de Saltillo artesanales tejidos en telares de madera — tradición textil del siglo XVIII, diseños multicolores auténticos, La Magia Textil de México",t:"Alta",c:"gaalxim.com"},
+  ]},
+  "Baja California Sur":{lat:25.50,lon:-111.50,count:1,color:"#6c757d",companies:[
+    {n:"Chocola-Tre",p:"Primera fábrica bean-to-bar de Baja California Sur en San José del Cabo — chocolate artesanal de cacao 100% mexicano, proceso completo de la semilla a la barra",t:"Alta",c:"chocola-tre.com / Tel: (624) 179 1227"},
   ]},
 };
 
@@ -255,7 +267,8 @@ const NAME_MAP = {
   "Veracruz de Ignacio de la Llave":"Veracruz",
   "Michoacán de Ocampo":"Michoacán",
   "Querétaro de Arteaga":"Querétaro",
-  "Coahuila de Zaragoza":"Coahuila",
+  "Coahuila de Zaragoza":"Coahuila","Coahuila":"Coahuila",
+  "Baja California Sur":"Baja California Sur",
   "Chihuahua":"Chihuahua",
   "Nayarit":"Nayarit",
   "Nuevo León":"Nuevo León",
