@@ -56,8 +56,8 @@ header .sub{font-size:.75rem;color:#adc8e8;margin-top:2px}
     <div class="sub">Prospectos verificados con contacto directo · Junio 2026 · Haz clic en un estado para ver sus empresas</div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="n">135</div><div class="l">Empresas</div></div>
-    <div class="stat"><div class="n">28</div><div class="l">Estados</div></div>
+    <div class="stat"><div class="n">137</div><div class="l">Empresas</div></div>
+    <div class="stat"><div class="n">29</div><div class="l">Estados</div></div>
     <div class="stat"><div class="n">37</div><div class="l">Categorías</div></div>
   </div>
 </header>
@@ -274,6 +274,10 @@ const COMPANIES = {
   "Baja California":{lat:29.80,lon:-115.10,count:1,color:"#6c757d",companies:[
     {n:"OCOTE® Cerámica",p:"Estudio de cerámica artesanal en Tijuana fundado en 2018 — piezas utilitarias únicas modeladas y vidriadas a mano por Flavio Vela, clases y colecciones de diseño local",t:"Alta",c:"IG: @ocoteceramica / ocoteceramica.com"},
   ]},
+  "Durango":{lat:24.02,lon:-104.66,count:2,color:"#457b9d",companies:[
+    {n:"Fábrica Cóndor",p:"Fábrica de muebles de madera contemporáneos y a medida en Durango con más de 30 años de experiencia — cocinas integrales, componentes y mobiliario de alta calidad para hogar y empresa",t:"Alta",c:"Tel: 618 815 0445 / condordgo.com"},
+    {n:"Empresa Forestal Milpillas",p:"Empresa comunitaria forestal certificada FSC de San Bernardino de Milpillas Chico, Sierra Madre Durango — 30+ años produciendo madera de pino y muebles a medida con manejo sustentable",t:"Alta",c:"Tel: 618 826 1899"},
+  ]},
 };
 
 // Map between GeoJSON state names → our data keys
@@ -301,6 +305,7 @@ const NAME_MAP = {
   "Zacatecas":"Zacatecas",
   "Sinaloa":"Sinaloa",
   "Baja California":"Baja California",
+  "Durango":"Durango",
 };
 
 function radius(n){return n>=15?26:n>=10?21:n>=5?17:n>=3?13:n>=2?10:8}
