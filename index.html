@@ -56,7 +56,7 @@ header .sub{font-size:.75rem;color:#adc8e8;margin-top:2px}
     <div class="sub">Prospectos verificados con contacto directo · Junio 2026 · Haz clic en un estado para ver sus empresas</div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="n">137</div><div class="l">Empresas</div></div>
+    <div class="stat"><div class="n">140</div><div class="l">Empresas</div></div>
     <div class="stat"><div class="n">29</div><div class="l">Estados</div></div>
     <div class="stat"><div class="n">37</div><div class="l">Categorías</div></div>
   </div>
@@ -156,7 +156,7 @@ const COMPANIES = {
     {n:"Café Oriental",p:"75 años de tradición tostando café 100% mexicano — trabaja con granos de Chiapas, Veracruz, Oaxaca y Nayarit, maquila y venta directa",t:"Alta",c:"Tel: (55) 5558-2510 / ventas@cafeoriental.com.mx"},
     {n:"La Cosita Chula",p:"Red de 100 artesanos de Puebla, Tlaxcala, Oaxaca, Chiapas y Jalisco — barro negro, cobre martillado, arte huichol y más, venta en Liverpool y Amazon México",t:"Alta",c:"Tel: (55) 2352 4610 / hola@lacositachula.com.mx"},
   ]},
-  "Veracruz":{lat:19.17,lon:-96.13,count:7,color:"#f4a261",companies:[
+  "Veracruz":{lat:19.17,lon:-96.13,count:8,color:"#f4a261",companies:[
     {n:"Rancho y Beneficio Santa Beatriz",p:"Vainilla artesanal, vainas y extracto natural, 40 años",t:"Alta",c:"Tel: 784 842-1562"},
     {n:"Vainilla del Totonacapan",p:"Vainilla en vaina y extracto, región Totonacapan",t:"Alta",c:"Tel: (766) 845-0517"},
     {n:"iVainilla",p:"Vainilla gourmet de Papantla, vainas y extractos naturales",t:"Alta",c:"Tel: +52 784 848-3260"},
@@ -164,6 +164,7 @@ const COMPANIES = {
     {n:"Santa Elena Café Artesanal",p:"Café de altura de Veracruz, 1,300 msnm en Coatepec",t:"Alta",c:"Tel: +52 228 298-5804"},
     {n:"CasaTostadora",p:"Tostadora artesanal en Xico, Veracruz — café de especialidad de variedades Marsellesa, Bourbon, Typica y Gesha a 1,250 msnm, sistema agroecológico",t:"Alta",c:"casatostadora.mx"},
     {n:"Café Cien",p:"Café artesanal de altura 100% puro tostado medio — producido en Rancho Perseverancia, Veracruz, finca cafetalera desde 1951 con certificación orgánica",t:"Alta",c:"asaderocien.com"},
+    {n:"Muebles de Cedro América",p:"Fábrica de muebles artesanales de cedro con más de 20 años en Boca del Río — comedores, recámaras y salas a medida, fuente de trabajo para artesanos del norte de Veracruz",t:"Alta",c:"Tel: (229) 242-0432 / mueblesdecedroamerica.com"},
   ]},
   "Yucatán":{lat:20.97,lon:-89.62,count:10,color:"#f4a261",companies:[
     {n:"Artemayab",p:"Hamacas artesanales yucatecas, gran variedad de materiales",t:"Alta",c:"Tel: (999) 497-0788"},
@@ -206,9 +207,10 @@ const COMPANIES = {
     {n:"Envasadora de Miel Campeche",p:"Miel pura artesanal de abeja melífera, producción familiar sin aditivos — una de las mieles más limpias del sureste mexicano",t:"Alta",c:"Tel: (981) 817-7510"},
     {n:"Miel y Cera de Campeche",p:"Miel de abeja melipona pura de la zona maya de Campeche — producción artesanal certificada, la miel más rara y valiosa del mundo",t:"Alta",c:"Tel: (981) 817-5261"},
   ]},
-  "Hidalgo":{lat:20.12,lon:-98.73,count:2,color:"#457b9d",companies:[
+  "Hidalgo":{lat:20.12,lon:-98.73,count:3,color:"#457b9d",companies:[
     {n:"Bordados Artesanales Mi Tenango",p:"Bordados otomíes a mano con diseños de animales y naturaleza",t:"Alta",c:"Tel: +52 771 222-1250"},
     {n:"Mila Textiles Bordados",p:"Ropa artesanal mexicana con bordados tenango",t:"Alta",c:"Tel: 222 895-4336"},
+    {n:"Valle Rústicos",p:"Artesanías y muebles de madera rústica hechos a mano en Ixmiquilpan, Hidalgo — piezas únicas de decoración y mobiliario con tradición artesanal de la región del Valle del Mezquital",t:"Alta",c:"facebook.com/vallerusticos"},
   ]},
   "Michoacán":{lat:19.70,lon:-101.19,count:5,color:"#457b9d",companies:[
     {n:"Artesanos de Tzintzuntzan",p:"Cestería de tule y chuspata, petates y canastas michoacanas",t:"Alta",c:"Tel: (452) 524-1392"},
@@ -231,8 +233,9 @@ const COMPANIES = {
     {n:"Newood",p:"Carpintería profesional en Querétaro — puertas de madera sólida, melamina y gran formato de alta calidad, 20+ años de experiencia, envíos nacionales",t:"Alta",c:"newood.mx"},
     {n:"MADECO",p:"Fabricante de closets, cocinas integrales y puertas de madera a medida en Querétaro — 25 años de experiencia, diseños modernos y funcionales, producción 100% en México",t:"Alta",c:"madecomx.com"},
   ]},
-  "Nayarit":{lat:21.75,lon:-104.85,count:1,color:"#6c757d",companies:[
+  "Nayarit":{lat:21.75,lon:-104.85,count:2,color:"#457b9d",companies:[
     {n:"Tatehuari Arte Huichol",p:"Artículos decorativos con técnicas artesanales Wixáritari, joyería y tapices de estambre originales",t:"Alta"},
+    {n:"Artesanía Wixárika Tepic",p:"Tienda de arte y artesanías wixáritari (huichol) en Tepic — nierika, joyería de chaquira, bordados y tapices originales del pueblo Wixárika de Nayarit",t:"Alta",c:"WA: 311 389 4690"},
   ]},
   "Chihuahua":{lat:28.63,lon:-106.07,count:1,color:"#6c757d",companies:[
     {n:"Arte en Barro (Mata Ortiz)",p:"Cerámica fina de alta colección, técnica única de Juan Mata Ortiz reconocida en galerías internacionales",t:"Alta",c:"WA: +52 636 134 3713"},
